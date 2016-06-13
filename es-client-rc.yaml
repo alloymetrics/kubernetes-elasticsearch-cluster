@@ -24,7 +24,7 @@ spec:
           capabilities:
             add:
               - IPC_LOCK
-        image: quay.io/pires/docker-elasticsearch-kubernetes:2.3.3
+        image: docker.io/wleferrand/experiments
         imagePullPolicy: Always
         env:
         - name: NAMESPACE
@@ -39,12 +39,13 @@ spec:
           value: "false"
         - name: HTTP_ENABLE
           value: "true"
+        - name: HTTP_CORS_ENABLED
+          value: "true"
+        - name: HTTP_CORS_ALLOW_ORIGIN
+          value: "*"
         ports:
         - containerPort: 9200
           name: http
-          protocol: TCP
-        - containerPort: 9300
-          name: transport
           protocol: TCP
         volumeMounts:
         - mountPath: /data
